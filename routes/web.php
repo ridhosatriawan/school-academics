@@ -52,6 +52,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ulangan/siswa', 'UlanganController@siswa')->name('ulangan.siswa');
     Route::get('/sikap/siswa', 'SikapController@siswa')->name('sikap.siswa');
     Route::get('/rapot/siswa', 'RapotController@siswa')->name('rapot.siswa');
+    Route::get('/absen/harian-siswa', 'SiswaController@absen')->name('absen.siswa');
+    Route::post('/absen/simpan-siswa', 'SiswaController@simpan')->name('absen.siswa-simpan');
   });
 
   Route::middleware(['guru'])->group(function () {
@@ -90,6 +92,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/pengumuman', 'PengumumanController@index')->name('admin.pengumuman');
     Route::post('/admin/pengumuman/simpan', 'PengumumanController@simpan')->name('admin.pengumuman.simpan');
     Route::get('/guru/absensi', 'GuruController@absensi')->name('guru.absensi');
+    Route::get('/siswa/absensi', 'SiswaController@absensi')->name('siswa.absensi');
+    Route::get('/siswa/absensi-kelas/{id}', 'SiswaController@absensi_kelas')->name('siswa.absensi_kelas');
+    Route::get('/siswa/kehadiran/{id}', 'SiswaController@kehadiran')->name('siswa.kehadiran');
     Route::get('/guru/kehadiran/{id}', 'GuruController@kehadiran')->name('guru.kehadiran');
     Route::get('/absen/json', 'GuruController@json');
     Route::get('/guru/mapel/{id}', 'GuruController@mapel')->name('guru.mapel');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaketTable extends Migration
+class CreateAbsesnsiSiswaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreatePaketTable extends Migration
      */
     public function up()
     {
-        Schema::create('paket', function (Blueprint $table) {
+        Schema::create('absensi_siswa', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('ket', 50);
+            $table->date('tanggal');
+            $table->integer('siswa_id');
+            $table->string('kehadiran_id');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreatePaketTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paket');
+        Schema::dropIfExists('absensi_siswa');
     }
 }

@@ -10,7 +10,8 @@
     <div class="sidebar">
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
                 @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Operator')
                     <li class="nav-item has-treeview" id="liDashboard">
                         <a href="#" class="nav-link" id="Dashboard">
@@ -82,7 +83,7 @@
                             </li>
                         </ul>
                     </li>
-                    @if (Auth::user()->role == "Admin")
+                    @if (Auth::user()->role == 'Admin')
                         <li class="nav-item has-treeview" id="liViewTrash">
                             <a href="#" class="nav-link" id="ViewTrash">
                                 <i class="nav-icon fas fa-recycle"></i>
@@ -136,6 +137,12 @@
                         <a href="{{ route('guru.absensi') }}" class="nav-link" id="AbsensiGuru">
                             <i class="fas fa-calendar-check nav-icon"></i>
                             <p>Absensi Guru</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('siswa.absensi') }}" class="nav-link" id="AbsensiSiswa">
+                            <i class="fas fa-calendar-check nav-icon"></i>
+                            <p>Absensi Siswa</p>
                         </a>
                     </li>
                     <li class="nav-item has-treeview" id="liNilai">
@@ -213,10 +220,8 @@
                                     <p>Entry Nilai Ulangan</p>
                                 </a>
                             </li>
-                            @if (
-                                Auth::user()->guru(Auth::user()->id_card)->mapel->nama_mapel == "Pendidikan Agama dan Budi Pekerti" ||
-                                Auth::user()->guru(Auth::user()->id_card)->mapel->nama_mapel == "Pendidikan Pancasila dan Kewarganegaraan"
-                            )
+                            @if (Auth::user()->guru(Auth::user()->id_card)->mapel->nama_mapel == 'Pendidikan Agama dan Budi Pekerti' ||
+                                    Auth::user()->guru(Auth::user()->id_card)->mapel->nama_mapel == 'Pendidikan Pancasila dan Kewarganegaraan')
                                 <li class="nav-item">
                                     <a href="{{ route('sikap.index') }}" class="nav-link" id="SikapGuru">
                                         <i class="fas fa-file-alt nav-icon"></i>
@@ -262,6 +267,12 @@
                         <a href="{{ route('sikap.siswa') }}" class="nav-link" id="SikapSiswa">
                             <i class="fas fa-file-alt nav-icon"></i>
                             <p>Sikap</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('absen.siswa') }}" class="nav-link" id="AbsenSiswa">
+                            <i class="fas fa-file-alt nav-icon"></i>
+                            <p>Absen Harian</p>
                         </a>
                     </li>
                     <li class="nav-item">

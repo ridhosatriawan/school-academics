@@ -1,14 +1,16 @@
 @extends('template_backend.home')
-@section('heading', 'Absensi Guru')
+@section('heading', 'Absensi Siswa')
 @section('page')
-    <li class="breadcrumb-item active"><a href="{{ route('guru.absensi') }}">Absensi guru</a></li>
-    <li class="breadcrumb-item active">{{ $guru->nama_guru }}</li>
+    <li class="breadcrumb-item active"><a href="{{ route('siswa.absensi') }}">Absensi Siswa</a></li>
+    <li class="breadcrumb-item active">Detail Absensi Per Kelas</li>
+    <li class="breadcrumb-item active">{{ $siswa->nama_siswa }}</li>
 @endsection
 @section('content')
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('guru.index') }}" class="btn btn-default btn-sm"><i class="nav-icon fas fa-arrow-left"></i>
+                <a href="{{ route('siswa.absensi_kelas', Crypt::encrypt($siswa->kelas_id)) }}"
+                    class="btn btn-default btn-sm"><i class="nav-icon fas fa-arrow-left"></i>
                     &nbsp; Kembali</a>
             </div>
             <!-- /.card-header -->
@@ -22,11 +24,7 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         @foreach ($absen as $data)
-                            @php
-                                var_dump($data->kehadiran . '===');
-                            @endphp
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ date('l, d F Y', strtotime($data->tanggal)) }}</td>
@@ -44,6 +42,6 @@
 @endsection
 @section('script')
     <script>
-        $("#AbsensiGuru").addClass("active");
+        $("#AbsensiSiswa").addClass("active");
     </script>
 @endsection

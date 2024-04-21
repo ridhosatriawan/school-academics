@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Jadwal;
 use App\Mapel;
-use App\Paket;
 use App\Guru;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -20,8 +19,7 @@ class MapelController extends Controller
     public function index()
     {
         $mapel = Mapel::OrderBy('kelompok', 'asc')->OrderBy('nama_mapel', 'asc')->get();
-        $paket = Paket::all();
-        return view('admin.mapel.index', compact('mapel', 'paket'));
+        return view('admin.mapel.index', compact('mapel'));
     }
 
     /**
@@ -44,7 +42,6 @@ class MapelController extends Controller
     {
         $this->validate($request, [
             'nama_mapel' => 'required',
-            'paket_id' => 'required',
             'kelompok' => 'required'
         ]);
 
@@ -54,7 +51,6 @@ class MapelController extends Controller
             ],
             [
                 'nama_mapel' => $request->nama_mapel,
-                'paket_id' => $request->paket_id,
                 'kelompok' => $request->kelompok,
             ]
         );
@@ -83,8 +79,7 @@ class MapelController extends Controller
     {
         $id = Crypt::decrypt($id);
         $mapel = Mapel::findorfail($id);
-        $paket = Paket::all();
-        return view('admin.mapel.edit', compact('mapel', 'paket'));
+        return view('admin.mapel.edit', compact('mapel'));
     }
 
     /**
